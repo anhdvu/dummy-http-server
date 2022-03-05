@@ -20,13 +20,15 @@ func testHandler() http.HandlerFunc {
 		}
 
 		payload := make(map[string]interface{})
+
 		defer r.Body.Close()
-		log.Printf("%+v\n", payload)
 		err := json.NewDecoder(r.Body).Decode(&payload)
 		if err != nil {
-			http.Error(w, err.Error(), http.StatusInternalServerError)
+			http.Error(w, err.Error(), http.StatusBadRequest)
+			return
 		}
 
+		log.Printf("%+v\n", payload)
 		payload["response"] = "approved"
 
 		writeResponse(w, payload)
