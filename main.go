@@ -10,8 +10,7 @@ func main() {
 	log.Println("I am a dummy HTTP server and I only want POST.")
 
 	mux := http.NewServeMux()
-
-	mux.Handle("/", enforceJSONHeader(testHandler()))
+	mux.Handle("/callback", enforceJSONHeader(testHandler()))
 
 	srv := &http.Server{
 		Addr:         ":8989",

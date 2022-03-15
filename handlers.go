@@ -8,7 +8,7 @@ import (
 
 func testHandler() http.HandlerFunc {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		if r.URL.Path != "/" {
+		if r.URL.Path != "/callback" {
 			http.NotFound(w, r)
 			return
 		}
