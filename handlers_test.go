@@ -26,7 +26,7 @@ func Test_testHandler(t *testing.T) {
 		{
 			name:     "Get - Correct path",
 			method:   http.MethodGet,
-			path:     "/",
+			path:     "/callback",
 			body:     nil,
 			expected: http.StatusMethodNotAllowed,
 		},
@@ -40,7 +40,7 @@ func Test_testHandler(t *testing.T) {
 		{
 			name:     "POST - Correct path",
 			method:   http.MethodPost,
-			path:     "/",
+			path:     "/callback",
 			body:     []byte(`{"name":"Dace"}`),
 			expected: http.StatusOK,
 		},
@@ -70,7 +70,7 @@ func Test_testHandler(t *testing.T) {
 	t.Run("Response with application/json header", func(t *testing.T) {
 		var request *http.Request
 
-		request, _ = http.NewRequest(http.MethodPost, "/", bytes.NewBuffer([]byte(`{"name":"Dace"}`)))
+		request, _ = http.NewRequest(http.MethodPost, "/callback", bytes.NewBuffer([]byte(`{"name":"Dace"}`)))
 
 		response := httptest.NewRecorder()
 
